@@ -1,4 +1,4 @@
-# API-Data-Fetcher
+# API-WeatherData-Fetcher
 
 How to use this script:
 
