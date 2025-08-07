@@ -3,15 +3,14 @@ import json
 from weather import WeatherFetcher # Importing class from weather.py
 
 def load_api_key() -> str:
-    with open('.\src\config.json', 'r') as file:
+    with open('src/config.json', 'r') as file:
         config = json.load(file) # Load JSON data into a dictionary
 
     return config["API_WEATHER_KEY"] # Return api key
 
 def print_data(response, info):
     if response.status_code == 200:
-        print(f"Success!\ncity: ", info.get("city"), "\ntemp: ", info.get("temperature"), "\nweather conditions: ", info.get("weather conditions"))
-        #print(data) # viewing json data as a dictionary
+        print(f"Success!\ncity: ", info.get("city"), "\ncountry: ", info.get("country"), "\ntemp: ", info.get("temperature"), "\nhumidity: ", info.get("humidity"), "\nwind speed: ", info.get("wind_speed"), "\nweather conditions: ", info.get("weather conditions"), "\ntimezone: ", info.get("timezone"))
     else:
         print("Error: Could not retrieve data.")
 
@@ -23,9 +22,17 @@ def main():
     response = requests.get(url)
     data = response.json()
 
+    data_str = str(data)
+    with open('src/weather_data.txt', 'w') as file:
+        file.write(data_str)
+
     info = {"city" : data["name"],
-        "temperature" : data["main"]["temp"], 
-        "weather conditions" : data["weather"][0]["description"]
+        "country" : data["sys"]["country"],
+        "temperature" : data["main"]["temp"],
+        "humidity" : data["main"]["humidity"],
+        "wind_speed" : data["wind"]["speed"], 
+        "weather conditions" : data["weather"][0]["description"],
+        "timezone" : data["timezone"]
        }
 
     print_data(response, info)
