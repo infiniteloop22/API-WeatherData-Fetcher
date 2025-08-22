@@ -9,8 +9,9 @@ def load_api_key() -> str:
     return config["API_WEATHER_KEY"] # Return api key
 
 def print_data(response, info):
+    fahrenheit = ((info.get("temperature") * (9/5)) +  32)
     if response.status_code == 200:
-        print(f"Success!\ncity: ", info.get("city"), "\ncountry: ", info.get("country"), "\ntemp: ", info.get("temperature"), "\nhumidity: ", info.get("humidity"), "\nwind speed: ", info.get("wind_speed"), "\nweather conditions: ", info.get("weather conditions"), "\ntimezone: ", info.get("timezone"))
+        print(f"Success!\ncity: ", info.get("city"), "\ncountry: ", info.get("country"), "\ntemp: ", fahrenheit, "\nhumidity: ", info.get("humidity"), "\nwind speed: ", info.get("wind_speed"), "\nweather conditions: ", info.get("weather conditions"), "\ntimezone: ", info.get("timezone"))
     else:
         print("Error: Could not retrieve data.")
 
