@@ -25,7 +25,7 @@ A Python application structured to pull, parse, and log data using the OpenWeath
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com
+   git clone https://github.com/infiniteloop22/API-WeatherData-Fetcher
    ```
 2. Install the necessary network library:
    ```bash
