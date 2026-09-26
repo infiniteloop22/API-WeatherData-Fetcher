@@ -1,12 +1,12 @@
 import requests
 import json
-from weather import WeatherFetcher # Importing class from weather.py
+from weather import WeatherFetcher
 
 def load_api_key() -> str:
     with open('src/config.json', 'r') as file:
-        config = json.load(file) # Load JSON data into a dictionary
+        config = json.load(file)
 
-    return config["API_WEATHER_KEY"] # Return api key
+    return config["API_WEATHER_KEY"]
 
 def print_data(response, info):
     fahrenheit = ((info.get("temperature") * (9/5)) +  32)
@@ -38,5 +38,5 @@ def main():
 
     print_data(response, info)
 
-if __name__ == "__main__": # Telling Python which function to execute first when the script is run directly
+if __name__ == "__main__":
     main()
